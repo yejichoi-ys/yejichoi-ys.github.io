@@ -1,329 +1,515 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>우리의 이야기</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#F6F3EC;
-    --paper-2:#EFEAE0;
-    --ink:#1F2E24;
-    --ink-soft:#4B584E;
-    --gold:#B08A4E;
-    --gold-soft:#D9C49B;
-    --line:rgba(31,46,36,0.16);
-    --card:#FFFFFF;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Manrope', sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3, .serif{
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    letter-spacing:-0.01em;
-    margin:0;
-  }
-  .container{
-    max-width:760px;
-    margin:0 auto;
-    padding:0 28px;
-  }
-  .eyebrow{
-    font-family:'Manrope', sans-serif;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:0.22em;
-    text-transform:uppercase;
-    color:var(--gold);
-  }
-  a{color:inherit;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리의 이야기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F6F3EC;
+      --paper-2: #EFEAE0;
+      --ink: #1F2E24;
+      --ink-soft: #4B584E;
+      --gold: #B08A4E;
+      --gold-soft: #D9C49B;
+      --line: rgba(31, 46, 36, 0.16);
+      --card: #FFFFFF;
+    }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    min-height:100svh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:80px 28px 60px;
-    position:relative;
-  }
-  .hero-thread{
-    width:1px;
-    height:56px;
-    background:linear-gradient(var(--gold-soft), transparent);
-    margin-bottom:28px;
-  }
-  .hero .eyebrow{margin-bottom:18px;}
-  .hero h1{
-    font-size:clamp(38px, 7vw, 64px);
-    line-height:1.12;
-    max-width:11ch;
-  }
-  .hero h1 em{
-    font-style:italic;
-    color:var(--gold);
-  }
-  .hero p.sub{
-    margin-top:22px;
-    font-size:16px;
-    color:var(--ink-soft);
-    max-width:36ch;
-  }
-  .hero .meta{
-    margin-top:44px;
-    display:flex;
-    gap:28px;
-    flex-wrap:wrap;
-    justify-content:center;
-    font-size:13px;
-    letter-spacing:0.04em;
-    color:var(--ink-soft);
-  }
-  .hero .meta span{
-    display:block;
-    font-family:'Fraunces', serif;
-    font-size:17px;
-    color:var(--ink);
-    margin-top:4px;
-  }
-  .scroll-cue{
-    position:absolute;
-    bottom:36px;
-    font-size:12px;
-    letter-spacing:0.14em;
-    color:var(--ink-soft);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-  }
-  .scroll-cue::after{
-    content:"";
-    width:1px;
-    height:26px;
-    background:var(--ink-soft);
-    animation:pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:.25;}50%{opacity:.8;}}
+    * {
+      box-sizing: border-box;
+    }
 
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:100px 0;}
-  .section-head{
-    text-align:center;
-    margin-bottom:64px;
-  }
-  .section-head h2{
-    font-size:clamp(28px,4vw,38px);
-    margin-top:14px;
-  }
-  .rule{
-    width:40px;
-    height:1px;
-    background:var(--gold);
-    margin:0 auto;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ---------- NOTE ---------- */
-  .note{
-    background:var(--paper-2);
-  }
-  .note-card{
-    max-width:560px;
-    margin:0 auto;
-    text-align:center;
-    padding:0 12px;
-  }
-  .note-card p{
-    font-size:18px;
-    color:var(--ink-soft);
-  }
-  .note-card .sign{
-    margin-top:28px;
-    font-family:'Caveat', cursive;
-    font-size:28px;
-    color:var(--gold);
-  }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* ---------- TIMELINE ---------- */
-  .timeline{
-    position:relative;
-  }
-  .timeline-track{
-    position:relative;
-    max-width:640px;
-    margin:0 auto;
-  }
-  .timeline-track::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:0;
-    bottom:0;
-    width:1px;
-    background:var(--line);
-    transform:translateX(-50%);
-  }
-  .t-item{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    margin-bottom:64px;
-    opacity:0;
-    transform:translateY(18px);
-    transition:opacity .7s ease, transform .7s ease;
-  }
-  .t-item.visible{opacity:1;transform:translateY(0);}
-  .t-item:last-child{margin-bottom:0;}
-  .t-dot{
-    position:absolute;
-    top:6px;
-    left:50%;
-    transform:translateX(-50%);
-    width:9px;height:9px;
-    border-radius:50%;
-    background:var(--gold);
-    box-shadow:0 0 0 6px var(--paper);
-    z-index:2;
-  }
-  .t-card{
-    width:calc(50% - 40px);
-  }
-  .t-item:nth-child(odd) .t-card{margin-right:auto;text-align:right;}
-  .t-item:nth-child(even) .t-card{margin-left:auto;text-align:left;}
-  .t-year{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    color:var(--gold);
-    font-size:15px;
-    margin-bottom:8px;
-    display:block;
-  }
-  .photo-slot{
-    width:100%;
-    aspect-ratio:4/3;
-    border:1px dashed var(--gold-soft);
-    border-radius:2px;
-    background:var(--card);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    color:var(--ink-soft);
-    font-size:12px;
-    letter-spacing:0.04em;
-    margin-bottom:14px;
-  }
-  .photo-slot svg{opacity:.55;}
-  .photo-slot.filled{border:none;padding:0;overflow:hidden;}
-  .photo-slot.filled img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;}
-  .t-caption{
-    font-size:14px;
-    color:var(--ink-soft);
-  }
-  @media (max-width:620px){
-    .timeline-track::before{left:14px;}
-    .t-dot{left:14px;}
-    .t-card{width:calc(100% - 40px); margin-left:40px !important; text-align:left !important;}
-  }
+    h1,
+    h2,
+    h3,
+    .serif {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
 
-  /* ---------- GALLERY ---------- */
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:14px;
-  }
-  .gallery-grid .photo-slot{margin-bottom:0;aspect-ratio:1/1;}
-  .gallery-grid .photo-slot.tall{aspect-ratio:1/1.3;}
-  @media (max-width:620px){
-    .gallery-grid{grid-template-columns:repeat(2,1fr);}
-  }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-  /* ---------- MESSAGE WALL ---------- */
-  .messages{background:var(--paper-2);}
-  .msg-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-  }
-  @media (max-width:620px){.msg-grid{grid-template-columns:1fr;}}
-  .msg-card{
-    background:var(--card);
-    border-radius:2px;
-    padding:26px 24px;
-    box-shadow:0 1px 0 var(--line);
-  }
-  .msg-card .name{
-    font-size:12px;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--gold);
-    margin-bottom:10px;
-    font-weight:700;
-  }
-  .msg-card p{
-    font-family:'Caveat', cursive;
-    font-size:22px;
-    color:var(--ink);
-    margin:0;
-    line-height:1.4;
-  }
+    .eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
 
-  /* ---------- FOOTER ---------- */
-  footer{
-    text-align:center;
-    padding:90px 28px 60px;
-  }
-  footer .rule{margin-bottom:26px;}
-  footer h3{
-    font-size:clamp(24px,4vw,32px);
-    max-width:14ch;
-    margin:0 auto 14px;
-  }
-  footer p{color:var(--ink-soft); font-size:14px;}
-  .heart{
-    margin-top:34px;
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    color:var(--gold);
-    font-size:16px;
-  }
-</style>
+    a {
+      color: inherit;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 28px 60px;
+      position: relative;
+    }
+
+    .hero-thread {
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(var(--gold-soft), transparent);
+      margin-bottom: 28px;
+    }
+
+    .hero .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.12;
+      max-width: 14ch;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero p.sub {
+      margin-top: 22px;
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 36ch;
+    }
+
+    .hero .meta {
+      margin-top: 44px;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+
+    .hero .meta span {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .hero .sign {
+      margin-top: 16px;
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-cue::after {
+      content: "";
+      width: 1px;
+      height: 26px;
+      background: var(--ink-soft);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .25;
+      }
+
+      50% {
+        opacity: .8;
+      }
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 38px);
+      margin-top: 14px;
+    }
+
+    .rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto;
+    }
+
+    /* ---------- NOTE ---------- */
+    .note {
+      background: var(--paper-2);
+    }
+
+    .note-card {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    .note-card p {
+      font-size: 18px;
+      color: var(--ink-soft);
+    }
+
+    .note-card .sign2 {
+      margin-top: 28px;
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      color: var(--gold);
+    }
+
+
+    .note-card .sign {
+      margin-top: 16px;
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline-track {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .timeline-track::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+
+    .t-item {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 64px;
+    }
+
+    .t-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .t-dot {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px var(--paper);
+      z-index: 2;
+    }
+
+    .t-card {
+      width: calc(50% - 40px);
+    }
+
+    .t-item:nth-child(odd) .t-card {
+      margin-right: auto;
+      text-align: right;
+    }
+
+    .t-item:nth-child(even) .t-card {
+      margin-left: auto;
+      text-align: left;
+    }
+
+    .t-year {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 15px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .photo-slot {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border: 1px dashed var(--gold-soft);
+      border-radius: 2px;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .photo-slot svg {
+      opacity: .55;
+    }
+
+    .photo-slot.filled {
+      border: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .photo-slot.filled img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .t-caption {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- SCROLL REVEAL (timeline photos) ---------- */
+    .t-year,
+    .t-photo-pair,
+    .t-card>.photo-slot,
+    .t-caption {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s cubic-bezier(.16, .8, .32, 1), transform .9s cubic-bezier(.16, .8, .32, 1);
+    }
+
+    .t-photo-pair .photo-slot {
+      opacity: 0;
+      transform: translateY(22px) scale(.97);
+      transition: opacity .8s cubic-bezier(.16, .8, .32, 1), transform .8s cubic-bezier(.16, .8, .32, 1);
+    }
+
+    .t-item.visible .t-year {
+      opacity: 1;
+      transform: none;
+      transition-delay: 0s;
+    }
+
+    .t-item.visible .t-photo-pair,
+    .t-item.visible .t-card>.photo-slot {
+      opacity: 1;
+      transform: none;
+      transition-delay: .1s;
+    }
+
+    .t-item.visible .t-caption {
+      opacity: 1;
+      transform: none;
+      transition-delay: .4s;
+    }
+
+    .t-item.visible .t-photo-pair .photo-slot {
+      opacity: 1;
+      transform: none;
+    }
+
+    .t-item.visible .t-photo-pair .photo-slot:nth-child(1) {
+      transition-delay: .12s;
+    }
+
+    .t-item.visible .t-photo-pair .photo-slot:nth-child(2) {
+      transition-delay: .24s;
+    }
+
+    .t-item.visible .t-photo-pair .photo-slot:nth-child(3) {
+      transition-delay: .36s;
+    }
+
+    .t-item.visible .t-photo-pair .photo-slot:nth-child(4) {
+      transition-delay: .48s;
+    }
+
+    @media (max-width:620px) {
+      .timeline-track::before {
+        left: 14px;
+      }
+
+      .t-dot {
+        left: 14px;
+      }
+
+      .t-card {
+        width: calc(100% - 40px);
+        margin-left: 40px !important;
+        text-align: left !important;
+      }
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .gallery-grid .photo-slot {
+      margin-bottom: 0;
+      aspect-ratio: 1/1;
+    }
+
+    .gallery-grid .photo-slot.tall {
+      aspect-ratio: 1/1.3;
+    }
+
+    @media (max-width:620px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ---------- MESSAGE WALL ---------- */
+    .messages {
+      background: var(--paper-2);
+    }
+
+    .msg-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    @media (max-width:620px) {
+      .msg-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .msg-card {
+      background: var(--card);
+      border-radius: 2px;
+      padding: 26px 24px;
+      box-shadow: 0 1px 0 var(--line);
+    }
+
+    .msg-card .name {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .msg-card p {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 90px 28px 60px;
+    }
+
+    footer .rule {
+      margin-bottom: 26px;
+    }
+
+    footer h3 {
+      font-size: clamp(24px, 4vw, 32px);
+      max-width: 198ch;
+      margin: 0 auto 14px;
+    }
+
+    footer p {
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .heart {
+      margin-top: 34px;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 16px;
+    }
+  </style>
 </head>
+
 <body>
 
   <section class="hero">
     <div class="hero-thread"></div>
     <span class="eyebrow">Surprise Bridal Shower</span>
-    <h1>우리의 지난 날,<br><em>소영이</em>에게</h1>
-    <p class="sub">결혼식 전, 함께 웃고 떠들었던 시간을 모아 몰래 준비했어.</p>
-    <div class="meta">
-      <div>여행지<span>[여행지 이름]</span></div>
-      <div>날짜<span>[YYYY.MM.DD]</span></div>
-      <div>함께한 사람들<span>[친구 이름들]</span></div>
-    </div>
-    <div class="scroll-cue">SCROLL</div>
-  </section>
-
-  <section class="note">
-    <div class="container note-card">
-      <span class="eyebrow">To. 소영이</span>
-      <h2 style="margin-top:16px;">깜짝 놀랐지?</h2>
-      <p style="margin-top:20px;">네가 신부가 된다는 게 아직도 신기해. 새로운 앞날을 축복하며, 그동안 우리가 함께한 이야기들을 모아봤어. 우리 4명의 첫 해외여행에서 지난날을 실컷 추억해보자. 진심으로 축하해^_^.</p>
-      <div class="sign">— 소영이의 든든한 뒷배 예지, 승미, 가영이가-</div>
-    </div>
+    <h1>여름 햇살처럼 <br>눈부신 8월의 신부,<br><em>소영이</em>에게</h1>
+    <p style="margin-top:20px;">소영이의 결혼을 진심으로 축복해. <br>
+      인생의 1막에 우리가 함께 나눴던 추억들을 돌아보며, <br>
+      새로 펼쳐질 2막에서도 함께 희노애락을 나누며 살아가기로 약속하자! <br>
+      행복하게 잘 살아❤️
+    </p>
+    <div class="sign">— 앎앎이들이 —</div>
   </section>
 
   <section class="timeline" id="timeline">
@@ -337,52 +523,191 @@
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">2008</span>
-            <div class="photo-slot filled">
-              <img src="imgs/01/080216-0000.jpg" alt="중고등학교 시절 사진">
+            <span class="t-year">2006~2009</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/DSCN2946.jpg" alt="중등졸업">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/080422-0040.jpg" alt="제주도">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_0911.jpg" alt="고등">
+              </div>
             </div>
-            <p class="t-caption">중고등학교 시절, 매일 붙어다녔던 그때</p>
+            <p class="t-caption">나뭇잎만 굴러다녀도 즐거웠던 중고등학교 시절</p>
           </div>
         </div>
 
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">2008</span>
-            <div class="photo-slot filled">
-              <img src="imgs/02/080321-0002.jpg" alt="생일 파티 사진">
+            <span class="t-year">2010~2014</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/2011-07-09 03.jpg" alt="홍대">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/BandPhoto_2013_04_21_02_58_03.jpg" alt="연주회">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/1392909226128.jpg" alt="하얼빈">
+              </div>
             </div>
-            <p class="t-caption">네 생일, 다 같이 모여서 축하했던 날</p>
+            <p class="t-caption">엉덩이 가볍게 모이던 시절</p>
           </div>
         </div>
+
 
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">2013</span>
-            <div class="photo-slot filled">
-              <img src="imgs/05/20130823_130356.jpg" alt="패셔니스타 시절 사진">
+            <span class="t-year">2015~2017</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/20160618_173945.jpg" alt="한강">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/20160903_153310.jpg" alt="거제">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/2017-01-06-21-27-55.jpg" alt="크리스마스">
+              </div>
             </div>
-            <p class="t-caption">그 시절 트민녀</p>
+            <p class="t-caption">파릇파릇</p>
           </div>
         </div>
+
 
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">[올해]</span>
-            <div class="photo-slot">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
-              사진을 추가하세요
+            <span class="t-year">2018~2019</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/180707.jpg" alt="강촌">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_6562.jpg" alt="제주도">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/1537067466901.jpg" alt="마라톤">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/2019-07-27-23-58-30.jpg" alt="마라톤2">
+              </div>
+
             </div>
-            <p class="t-caption">[청혼 소식을 들었을 때 이야기를 적어주세요]</p>
+            <p class="t-caption">에너지 넘치던!!</p>
           </div>
         </div>
+
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">2020~2021</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/20200228_210339.jpg" alt="줌">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/1584111713014-3.jpg" alt="생일">
+              </div>
+            </div>
+            <p class="t-caption">코로나때도 만난다 이거에요~</p>
+          </div>
+        </div>
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">2022~2023</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_9107.jpeg" alt="강선">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_0994.jpg" alt="생일">
+              </div>
+            </div>
+            <p class="t-caption">우리 만남~놓치지 않을거에요~</p>
+          </div>
+        </div>
+
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">2024</span>
+            <div class="t-photo-pair">
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_2303.jpg" alt="연남동중국집">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_1389.jpg" alt="합정타코">
+              </div>
+              <div class="photo-slot filled">
+                <img src="imgs/01/IMG_4866.jpg" alt="합정타코">
+              </div>
+            </div>
+            <p class="t-caption">중식,타코,장작구이 접수완.</p>
+          </div>
+        </div>
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">2025</span>
+            <div class="photo-slot filled">
+              <img src="imgs/01/IMG_6035.jpg" alt="병문안">
+            </div>
+            <p class="t-caption">다리가 찢어져도 만나요~</p>
+          </div>
+        </div>
+
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">2026</span>
+            <div class="photo-slot filled">
+              <img src="imgs/01/IMG_9155.jpg" alt="승미집">
+            </div>
+            <div class="photo-slot filled">
+              <img src="imgs/01/IMG_1732.jpg" alt="승미전시">
+            </div>
+            <p class="t-caption">앎앎이 기쁨을 나누면 기쁨이 4제곱!</p>
+          </div>
+        </div>
+
+
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-card">
+            <span class="t-year">Now</span>
+            <div class="photo-slot filled">
+              <img src="imgs/01/now1.jpg" alt="상해1">
+            </div>
+            <div class="photo-slot filled">
+              <img src="imgs/01/now2.jpg" alt="상해2">
+            </div>
+            <p class="t-caption">앎앎의 첫 해외여행!</p>
+          </div>
+        </div>
+
 
       </div>
     </div>
   </section>
 
+  <!-- 
   <section class="gallery" id="gallery">
     <div class="container">
       <div class="section-head">
@@ -390,15 +715,45 @@
         <h2>우리가 남긴 순간들</h2>
       </div>
       <div class="gallery-grid">
-        <div class="photo-slot tall"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
-        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
-        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
-        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
-        <div class="photo-slot tall"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
-        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="14" rx="1.5"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
+        <div class="photo-slot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.3">
+            <rect x="3" y="6" width="18" height="14" rx="1.5" />
+            <circle cx="12" cy="13" r="3.5" />
+            <path d="M8 6l1.5-2h5L16 6" />
+          </svg>사진 추가</div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="messages" id="messages">
     <div class="container">
@@ -408,20 +763,16 @@
       </div>
       <div class="msg-grid">
         <div class="msg-card">
-          <div class="name">[친구 이름 1]</div>
-          <p>[축하 메시지를 적어주세요. 너무 예뻐서 눈물 날 것 같아 :)]</p>
+          <div class="name">예디</div>
+          <p>너무 예뻐서 눈물 날 것 같아 :)</p>
         </div>
         <div class="msg-card">
-          <div class="name">[친구 이름 2]</div>
-          <p>[축하 메시지를 적어주세요. 우리 우정 변치 말자!]</p>
+          <div class="name">뜽미</div>
+          <p>우리 우정 변치 말자!</p>
         </div>
         <div class="msg-card">
-          <div class="name">[친구 이름 3]</div>
-          <p>[축하 메시지를 적어주세요. 늘 곁에 있을게.]</p>
-        </div>
-        <div class="msg-card">
-          <div class="name">[친구 이름 4]</div>
-          <p>[축하 메시지를 적어주세요. 결혼 진심으로 축하해!]</p>
+          <div class="name">가용이</div>
+          <p>늘 곁에 있을게.</p>
         </div>
       </div>
     </div>
@@ -431,19 +782,20 @@
     <div class="rule"></div>
     <span class="eyebrow">Thank You</span>
     <h3 style="margin-top:14px;">소영이의 새로운 인생챕터를 축하하며,<br>더 많은 추억을 함께</h3>
-    <p>, 우리 우정은 앞으로도 계속될 거야. 쭈욱~ </p>
+    <p>우리 우정은 앞으로도 계속될 거야.<br> 앎앎 야~호~ </p>
     <div class="heart">with love, ArmArm </div>
   </footer>
 
-<script>
-  const items = document.querySelectorAll('.t-item');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('visible'); }
-    });
-  }, {threshold:0.25});
-  items.forEach(i=>io.observe(i));
-</script>
+  <script>
+    const items = document.querySelectorAll('.t-item');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(i => io.observe(i));
+  </script>
 
 </body>
+
 </html>
