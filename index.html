@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>소영이와 앎앎의 이야기</title>
-  
   <meta property="og:title" content="Yeji Choi">
   <meta property="og:description" content="Postdoctoral Researcher @ KAIST AI">
   <meta property="og:image" content="https://yejichoi-ys.github.io/imgs/cyj.jpg">
@@ -16,7 +14,6 @@
   <meta name="twitter:description" content="Postdoctoral Researcher @ KAIST AI">
   <meta name="twitter:image" content="https://yejichoi-ys.github.io/imgs/cyj.jpg">
   <!-- ▲▲ -->
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap"
@@ -32,15 +29,12 @@
       --line: rgba(31, 46, 36, 0.16);
       --card: #FFFFFF;
     }
-
     * {
       box-sizing: border-box;
     }
-
     html {
       scroll-behavior: smooth;
     }
-
     body {
       margin: 0;
       background: var(--paper);
@@ -49,7 +43,6 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-
     h1,
     h2,
     h3,
@@ -59,13 +52,11 @@
       letter-spacing: -0.01em;
       margin: 0;
     }
-
     .container {
       max-width: 760px;
       margin: 0 auto;
       padding: 0 28px;
     }
-
     .eyebrow {
       font-family: 'Manrope', sans-serif;
       font-size: 12px;
@@ -74,11 +65,9 @@
       text-transform: uppercase;
       color: var(--gold);
     }
-
     a {
       color: inherit;
     }
-
     /* ---------- BGM PLAYER ---------- */
     .bgm-toggle {
       position: fixed;
@@ -102,9 +91,59 @@
     .bgm-toggle:hover { transform: scale(1.06); }
     .bgm-toggle.playing { animation: spin 6s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
     /* ---------- HERO ---------- */
     .hero {
+      min-height: 100svh;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      opacity: 0;
+      filter: saturate(0.92) brightness(1.03);
+      animation: heroFade 18s ease-in-out infinite;
+    }
+    .hero-bg-img:nth-child(1) { animation-delay: 0s; }
+    .hero-bg-img:nth-child(2) { animation-delay: 6s; }
+    .hero-bg-img:nth-child(3) { animation-delay: 12s; }
+    @keyframes heroFade {
+      0%   { opacity: 0; }
+      6%   { opacity: 1; }
+      28%  { opacity: 1; }
+      36%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(246,243,236,0.32) 0%, rgba(246,243,236,0.58) 42%, var(--paper) 94%);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg-img {
+        animation: none;
+        opacity: 0;
+      }
+      .hero-bg-img:first-child {
+        opacity: 1;
+      }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
       min-height: 100svh;
       display: flex;
       flex-direction: column;
@@ -112,38 +151,31 @@
       justify-content: center;
       text-align: center;
       padding: 80px 28px 60px;
-      position: relative;
     }
-
     .hero-thread {
       width: 1px;
       height: 56px;
       background: linear-gradient(var(--gold-soft), transparent);
       margin-bottom: 28px;
     }
-
     .hero .eyebrow {
       margin-bottom: 18px;
     }
-
     .hero h1 {
       font-size: clamp(38px, 6vw, 64px);
       line-height: 1.12;
       max-width: 14ch;
     }
-
     .hero h1 em {
       font-style: italic;
       color: var(--gold);
     }
-
     .hero p.sub {
       margin-top: 22px;
       font-size: 16px;
       color: var(--ink-soft);
       max-width: 36ch;
     }
-
     .hero .meta {
       margin-top: 44px;
       display: flex;
@@ -154,7 +186,6 @@
       letter-spacing: 0.04em;
       color: var(--ink-soft);
     }
-
     .hero .meta span {
       display: block;
       font-family: 'Fraunces', serif;
@@ -162,15 +193,12 @@
       color: var(--ink);
       margin-top: 4px;
     }
-
     .hero .sign {
       margin-top: 16px;
       font-family: 'Fraunces', serif;
       font-size: 24px;
       color: var(--gold);
     }
-
-
     .scroll-cue {
       position: absolute;
       bottom: 36px;
@@ -182,7 +210,6 @@
       align-items: center;
       gap: 8px;
     }
-
     .scroll-cue::after {
       content: "";
       width: 1px;
@@ -190,84 +217,68 @@
       background: var(--ink-soft);
       animation: pulse 2s ease-in-out infinite;
     }
-
     @keyframes pulse {
-
       0%,
       100% {
         opacity: .25;
       }
-
       50% {
         opacity: .8;
       }
     }
-
     /* ---------- SECTION SHELL ---------- */
     section {
       padding: 100px 0;
     }
-
     .section-head {
       text-align: center;
       margin-bottom: 64px;
     }
-
     .section-head h2 {
       font-size: clamp(28px, 4vw, 38px);
       margin-top: 14px;
     }
-
     .rule {
       width: 40px;
       height: 1px;
       background: var(--gold);
       margin: 0 auto;
     }
-
     /* ---------- NOTE ---------- */
     .note {
       background: var(--paper-2);
     }
-
     .note-card {
       max-width: 560px;
       margin: 0 auto;
       text-align: center;
       padding: 0 12px;
     }
-
     .note-card p {
       font-size: 18px;
       color: var(--ink-soft);
     }
-
     .note-card .sign2 {
       margin-top: 28px;
       font-family: 'Caveat', cursive;
       font-size: 26px;
       color: var(--gold);
     }
-
-
     .note-card .sign {
       margin-top: 16px;
       font-family: 'Fraunces', serif;
       font-size: 24px;
       color: var(--gold);
     }
-
     /* ---------- TIMELINE ---------- */
     .timeline {
       position: relative;
     }
-
     .timeline-track {
       position: relative;
       max-width: 640px;
       margin: 0 auto;
     }
-
     .timeline-track::before {
       content: "";
       position: absolute;
@@ -278,18 +289,15 @@
       background: var(--line);
       transform: translateX(-50%);
     }
-
     .t-item {
       position: relative;
       display: flex;
       justify-content: center;
       margin-bottom: 64px;
     }
-
     .t-item:last-child {
       margin-bottom: 0;
     }
-
     .t-dot {
       position: absolute;
       top: 6px;
@@ -302,21 +310,17 @@
       box-shadow: 0 0 0 6px var(--paper);
       z-index: 2;
     }
-
     .t-card {
       width: calc(50% - 40px);
     }
-
     .t-item:nth-child(odd) .t-card {
       margin-right: auto;
       text-align: right;
     }
-
     .t-item:nth-child(even) .t-card {
       margin-left: auto;
       text-align: left;
     }
-
     .t-year {
       font-family: 'Fraunces', serif;
       font-style: italic;
@@ -325,7 +329,6 @@
       margin-bottom: 8px;
       display: block;
     }
-
     .photo-slot {
       width: 100%;
       aspect-ratio: 4/3;
@@ -342,17 +345,14 @@
       letter-spacing: 0.04em;
       margin-bottom: 14px;
     }
-
     .photo-slot svg {
       opacity: .55;
     }
-
     .photo-slot.filled {
       border: none;
       padding: 0;
       overflow: hidden;
     }
-
     .photo-slot.filled img {
       width: 100%;
       height: 100%;
@@ -360,12 +360,10 @@
       display: block;
       border-radius: 2px;
     }
-
     .t-caption {
       font-size: 14px;
       color: var(--ink-soft);
     }
-
     /* ---------- SCROLL REVEAL (timeline photos) ---------- */
     .t-year,
     .t-photo-pair,
@@ -377,103 +375,84 @@
       transform: translateY(22px);
       transition: opacity .9s cubic-bezier(.16, .8, .32, 1), transform .9s cubic-bezier(.16, .8, .32, 1);
     }
-
     .t-photo-pair .photo-slot {
       opacity: 0;
       transform: translateY(22px) scale(.97);
       transition: opacity .8s cubic-bezier(.16, .8, .32, 1), transform .8s cubic-bezier(.16, .8, .32, 1);
     }
-
     .t-item.visible .t-year {
       opacity: 1;
       transform: none;
       transition-delay: 0s;
     }
-
     .t-item.visible .t-photo-pair,
     .t-item.visible .t-card>.photo-slot {
       opacity: 1;
       transform: none;
       transition-delay: .1s;
     }
-
     .t-item.visible .t-caption {
       opacity: 1;
       transform: none;
       transition-delay: .4s;
     }
-
     .t-item.visible .polaroid-row {
       opacity: 1;
       transform: none;
       transition-delay: .1s;
     }
-
     .t-item.visible .boarding-pass {
       opacity: 1;
       transform: none;
       transition-delay: .3s;
     }
-
     .t-item.visible .t-photo-pair .photo-slot {
       opacity: 1;
       transform: none;
     }
-
     .t-item.visible .t-photo-pair .photo-slot:nth-child(1) {
       transition-delay: .12s;
     }
-
     .t-item.visible .t-photo-pair .photo-slot:nth-child(2) {
       transition-delay: .24s;
     }
-
     .t-item.visible .t-photo-pair .photo-slot:nth-child(3) {
       transition-delay: .36s;
     }
-
     .t-item.visible .t-photo-pair .photo-slot:nth-child(4) {
       transition-delay: .48s;
     }
-
     @media (max-width:620px) {
       .timeline-track::before {
         left: 14px;
       }
-
       .t-dot {
         left: 14px;
       }
-
       .t-card {
         width: calc(100% - 40px);
         margin-left: 40px !important;
         text-align: left !important;
       }
     }
-
     /* ---------- GALLERY ---------- */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-
     .gallery-grid .photo-slot {
       margin-bottom: 0;
       aspect-ratio: 1/1;
     }
-
     .gallery-grid .photo-slot.tall {
       aspect-ratio: 1/1.3;
     }
-
     @media (max-width:620px) {
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-
     /* ---------- POLAROID STICKERS (for latest memory) ---------- */
     .polaroid-row {
       display: flex;
@@ -481,10 +460,8 @@
       flex-wrap: wrap;
       margin-bottom: 16px;
     }
-
     .t-item:nth-child(odd) .polaroid-row { justify-content: flex-end; }
     .t-item:nth-child(even) .polaroid-row { justify-content: flex-start; }
-
     .polaroid {
       position: relative;
       background: #fff;
@@ -494,24 +471,20 @@
       transform: rotate(-5deg);
       transition: transform .25s ease;
     }
-
     .polaroid:nth-child(2) {
       transform: rotate(4deg);
       margin-top: 14px;
     }
-
     .polaroid:hover {
       transform: rotate(0deg) scale(1.04);
       z-index: 3;
     }
-
     .polaroid img {
       width: 100%;
       height: 108px;
       object-fit: cover;
       display: block;
     }
-
     .polaroid .tape {
       position: absolute;
       width: 42px;
@@ -522,7 +495,6 @@
       background: rgba(217, 196, 155, 0.55);
       border: 1px solid rgba(176, 138, 78, 0.35);
     }
-
     .polaroid span {
       display: block;
       text-align: center;
@@ -531,7 +503,6 @@
       color: var(--ink-soft);
       margin-top: 6px;
     }
-
     /* ---------- BOARDING PASS ---------- */
     .boarding-pass {
       position: relative;
@@ -542,7 +513,6 @@
       text-align: left;
       box-shadow: 0 10px 26px rgba(31, 46, 36, 0.12);
     }
-
     .boarding-pass::before,
     .boarding-pass::after {
       content: "";
@@ -554,10 +524,8 @@
       top: 50%;
       transform: translateY(-50%);
     }
-
     .boarding-pass::before { left: -9px; }
     .boarding-pass::after { right: -9px; }
-
     .bp-eyebrow {
       font-family: 'Manrope', sans-serif;
       font-size: 10.5px;
@@ -567,7 +535,6 @@
       color: var(--gold);
       margin-bottom: 10px;
     }
-
     .bp-row {
       display: flex;
       align-items: center;
@@ -576,13 +543,11 @@
       margin-bottom: 12px;
       border-bottom: 1px dashed var(--gold-soft);
     }
-
     .bp-row .code {
       font-family: 'Fraunces', serif;
       font-size: 26px;
       color: var(--ink);
     }
-
     .bp-row .code small {
       display: block;
       font-family: 'Manrope', sans-serif;
@@ -592,7 +557,6 @@
       color: var(--ink-soft);
       margin-top: 2px;
     }
-
     .bp-row .plane {
       flex: 1;
       text-align: center;
@@ -600,7 +564,6 @@
       font-size: 15px;
       letter-spacing: 0.05em;
     }
-
     .bp-foot {
       display: flex;
       justify-content: space-between;
@@ -608,25 +571,21 @@
       flex-wrap: wrap;
       gap: 8px;
     }
-
     .bp-foot .date {
       font-family: 'Fraunces', serif;
       font-style: italic;
       color: var(--ink-soft);
       font-size: 14px;
     }
-
     .bp-foot .msg {
       font-family: 'Fraunces', serif;
       font-size: 18px;
       color: var(--gold);
     }
-
     /* ---------- MESSAGE WALL ---------- */
     .messages {
       background: var(--paper-2);
     }
-
     .msg-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -634,20 +593,17 @@
       max-width: 480px;
       margin: 0 auto;
     }
-
     @media (max-width:620px) {
       .msg-grid {
         grid-template-columns: 1fr;
       }
     }
-
     .msg-card {
       background: var(--card);
       border-radius: 2px;
       padding: 26px 24px;
       box-shadow: 0 1px 0 var(--line);
     }
-
     .msg-card .name {
       font-size: 12px;
       letter-spacing: 0.08em;
@@ -656,7 +612,6 @@
       margin-bottom: 10px;
       font-weight: 700;
     }
-
     .msg-card p {
       font-family: 'Fraunces', serif;
       font-size: 16px;
@@ -664,7 +619,6 @@
       margin: 0;
       line-height: 1.4;
     }
-
     /* ---------- EXTERNAL LINK (drive) ---------- */
     .drive-link {
       display: inline-flex;
@@ -684,28 +638,23 @@
       background: var(--gold);
       color: #fff;
     }
-
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
       padding: 90px 28px 60px;
     }
-
     footer .rule {
       margin-bottom: 26px;
     }
-
     footer h3 {
       font-size: clamp(24px, 4vw, 32px);
       max-width: 19ch;
       margin: 0 auto 14px;
     }
-
     footer p {
       color: var(--ink-soft);
       font-size: 14px;
     }
-
     .heart {
       margin-top: 34px;
       font-family: 'Fraunces', serif;
@@ -715,26 +664,30 @@
     }
   </style>
 </head>
-
 <body>
-
   <audio id="bgm" loop preload="none">
     <source src="bgm/nishimura_yukie-light.mp3" type="audio/mpeg">
   </audio>
   <button class="bgm-toggle" id="bgmToggle" aria-label="배경음악 재생/정지">♪</button>
-
   <section class="hero">
-    <div class="hero-thread"></div>
-    <span class="eyebrow">Surprise Bridal Shower</span>
-    <h1>여름 햇살처럼 <br>눈부신 8월의 신부,<br><em>소영이</em>에게</h1>
-    <p style="margin-top:20px;">소영이의 결혼을 진심으로 축복해. <br>
-      인생의 1막에 우리가 함께 나눴던 추억들을 돌아보며, <br>
-      새로 펼쳐질 2막에서도 함께 희노애락을 나누며 살아가기로 약속하자! <br>
-      행복하게 잘 살아❤️
-    </p>
-    <div class="sign">— 앎앎이들이 — <br> 2026.07.25 </div>
+    <div class="hero-bg">
+      <img class="hero-bg-img" src="imgs/01/wedding1.png" alt="">
+      <img class="hero-bg-img" src="imgs/01/wedding2.png" alt="">
+      <img class="hero-bg-img" src="imgs/01/wedding3.png" alt="">
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="hero-thread"></div>
+      <span class="eyebrow">Surprise Bridal Shower</span>
+      <h1>여름 햇살처럼 <br>눈부신 8월의 신부,<br><em>소영이</em>에게</h1>
+      <p style="margin-top:20px;">소영이의 결혼을 진심으로 축복해. <br>
+        인생의 1막에 우리가 함께 나눴던 추억들을 돌아보며, <br>
+        새로 펼쳐질 2막에서도 함께 희노애락을 나누며 살아가기로 약속하자! <br>
+        행복하게 잘 살아❤️
+      </p>
+      <div class="sign">— 앎앎이들이 — <br> 2026.07.25 </div>
+    </div>
   </section>
-
   <section class="timeline" id="timeline">
     <div class="container">
       <div class="section-head">
@@ -742,13 +695,11 @@
         <h2>우리가 함께한 시간</h2>
       </div>
       <div class="timeline-track">
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2006~2009</span>
             <div class="t-photo-pair">
-                     
               <div class="photo-slot filled">
                 <img src="imgs/01/080509-0000.jpg" alt="소영고딩">
               </div>
@@ -765,14 +716,11 @@
             <p class="t-caption">나뭇잎만 굴러다녀도 즐거웠던 중고등학교 시절</p>
           </div>
         </div>
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2010~2014</span>
             <div class="t-photo-pair">
-              
-              
               <div class="photo-slot filled">
                 <img src="imgs/01/2012-05-27 17.29.17.jpg" alt="꽃밭">
               </div>
@@ -789,14 +737,11 @@
             <p class="t-caption">엉덩이 가볍게 모이던 그때</p>
           </div>
         </div>
-
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2015~2017</span>
             <div class="t-photo-pair">
-                      
               <div class="photo-slot filled">
                 <img src="imgs/01/1483763288227.jpg" alt="예뽀">
               </div>
@@ -813,14 +758,11 @@
             <p class="t-caption">파릇파릇 꽃같은 우리들</p>
           </div>
         </div>
-
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2018~2019</span>
             <div class="t-photo-pair">
-              
               <div class="photo-slot filled">
                 <img src="imgs/01/IMG_1243.JPG" alt="자작나무">
               </div>
@@ -840,9 +782,6 @@
             <p class="t-caption">에너지 넘치던!!</p>
           </div>
         </div>
-
-
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
@@ -861,14 +800,11 @@
             <p class="t-caption">코로나때도 만난다 이거에요~</p>
           </div>
         </div>
-
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2022~2023</span>
             <div class="t-photo-pair">
-              
               <div class="photo-slot filled">
                 <img src="imgs/01/KakaoTalk_20260722_125639028.jpg" alt="소영이머리채">
               </div>
@@ -882,15 +818,11 @@
             <p class="t-caption">일산부터 잠실까지~ 우리 만남~놓치지 않을거에요~</p>
           </div>
         </div>
-
-
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2024</span>
             <div class="t-photo-pair">
-              
               <div class="photo-slot filled">
                 <img src="imgs/01/IMG_1426.JPG" alt="독감소영">
               </div>
@@ -907,7 +839,6 @@
             <p class="t-caption">중식,타코,장작구이 접수완.</p>
           </div>
         </div>
-
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
@@ -924,9 +855,7 @@
             <p class="t-caption">다리가 찢어져도 만나요~</p>
           </div>
         </div>
-
-
-
+        
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
@@ -947,11 +876,11 @@
           </div>
         </div>
 
+        
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">Now <br> 2026.07.24-26</span>
-
             <div class="polaroid-row">
               <div class="polaroid">
                 <div class="tape"></div>
@@ -961,10 +890,9 @@
               <!-- <div class="polaroid">
                 <div class="tape"></div>
                 <img src="imgs/01/sanghae2.jpg" alt="상해2">
-                <span>넷이서 ✧</span> -->
-              </div>
+                <span>넷이서 ✧</span>
+              </div> -->
             </div>
-
             <div class="boarding-pass">
               <div class="bp-eyebrow">ArmArm · Boarding Pass</div>
               <div class="bp-row">
@@ -977,16 +905,12 @@
                 <span class="msg">앎앎 첫 해외여행 탑승 완료 🎫</span>
               </div>
             </div>
-
             <!-- <p class="t-caption">앎앎의 역사적인 첫 해외여행! Keep going~ </p> -->
           </div>
         </div>
-
-
       </div>
     </div>
   </section>
-
   <section class="messages" id="messages">
     <div class="container">
       <div class="section-head">
@@ -1023,20 +947,17 @@
       </div>
     </div>
   </section>
-
   <footer>
     <div class="rule"></div>
     <span class="eyebrow">Thank You</span>
     <h3 style="margin-top:14px;">소영이의 새로운 인생챕터를 <br>진심으로 축하하며,<br>더 많은 추억을 함께해💕</h3>
     <p>우리 우정은 앞으로도 계속될 거야.<br> 앎앎 야~호~ </p>
     <div class="heart">with love, ArmArm </div>
-    
 <!-- https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n -->
     <a class="drive-link" href="https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n" target="_blank" rel="noopener">
       📁 더 많은 사진/영상 보러가기
     </a>
   </footer>
-
   <script>
     const items = document.querySelectorAll('.t-item');
     const io = new IntersectionObserver((entries) => {
@@ -1045,7 +966,6 @@
       });
     }, { threshold: 0.2 });
     items.forEach(i => io.observe(i));
-
     // BGM 재생/정지 토글 (브라우저 정책상 자동재생은 막혀있어서, 버튼을 눌러야 재생돼요)
     const bgm = document.getElementById('bgm');
     const bgmToggle = document.getElementById('bgmToggle');
@@ -1065,7 +985,5 @@
       }
     });
   </script>
-
 </body>
-
 </html>
