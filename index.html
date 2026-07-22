@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +30,15 @@
       --line: rgba(31, 46, 36, 0.16);
       --card: #FFFFFF;
     }
+
     * {
       box-sizing: border-box;
     }
+
     html {
       scroll-behavior: smooth;
     }
+
     body {
       margin: 0;
       background: var(--paper);
@@ -43,6 +47,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+
     h1,
     h2,
     h3,
@@ -52,11 +57,13 @@
       letter-spacing: -0.01em;
       margin: 0;
     }
+
     .container {
       max-width: 760px;
       margin: 0 auto;
       padding: 0 28px;
     }
+
     .eyebrow {
       font-family: 'Manrope', sans-serif;
       font-size: 12px;
@@ -65,9 +72,11 @@
       text-transform: uppercase;
       color: var(--gold);
     }
+
     a {
       color: inherit;
     }
+
     /* ---------- BGM PLAYER ---------- */
     .bgm-toggle {
       position: fixed;
@@ -85,104 +94,289 @@
       justify-content: center;
       cursor: pointer;
       font-size: 18px;
-      box-shadow: 0 2px 10px rgba(31,46,36,0.12);
+      box-shadow: 0 2px 10px rgba(31, 46, 36, 0.12);
       transition: transform .2s ease;
     }
-    .bgm-toggle:hover { transform: scale(1.06); }
-    .bgm-toggle.playing { animation: spin 6s linear infinite; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .bgm-toggle:hover {
+      transform: scale(1.06);
+    }
+
+    .bgm-toggle.playing {
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     /* ---------- HERO ---------- */
-.hero {min-height: 100svh; position: relative; overflow: hidden;}
-.hero-bg {position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--paper);}
-.hero-bg-img {position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; opacity: 0; filter: saturate(0.92) brightness(1.03); animation: heroFade 18s ease-in-out infinite;}
-.hero-bg-img:nth-child(1) {animation-delay: 0s; object-position: 76% 18%;}
-.hero-bg-img:nth-child(2) {animation-delay: 6s; object-position: 70% 20%;}
-.hero-bg-img:nth-child(3) {animation-delay: 12s; object-position: 58% 15%;}
-@keyframes heroFade {
-  0% {opacity: 0;}
-  6% {opacity: 1;}
-  28% {opacity: 1;}
-  36% {opacity: 0;}
-  100% {opacity: 0;}
-}
-.hero-scrim {position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(246,243,236,0.32) 0%, rgba(246,243,236,0.58) 42%, var(--paper) 94%);}
-@media (prefers-reduced-motion: reduce) {
-  .hero-bg-img {animation: none; opacity: 0;}
-  .hero-bg-img:first-child {opacity: 1;}
-}
-@media (max-width:480px) {
-  .hero-bg-img:nth-child(1) {object-position: 84% 16%;}
-  .hero-bg-img:nth-child(2) {object-position: 80% 18%;}
-  .hero-bg-img:nth-child(3) {object-position: 66% 14%;}
-}
-.hero-content {position: relative; z-index: 2; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 28px 60px;}
-.hero-thread {width: 1px; height: 56px; background: linear-gradient(var(--gold-soft), transparent); margin-bottom: 28px;}
-.hero .eyebrow {margin-bottom: 18px;}
-.hero h1 {font-size: clamp(38px, 6vw, 64px); line-height: 1.12; max-width: 14ch;}
-.hero h1 em {font-style: italic; color: var(--gold);}
-.hero p.sub {margin-top: 22px; font-size: 16px; color: var(--ink-soft); max-width: 36ch;}
-.hero .meta {margin-top: 44px; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; font-size: 13px; letter-spacing: 0.04em; color: var(--ink-soft);}
-.hero .meta span {display: block; font-family: 'Fraunces', serif; font-size: 17px; color: var(--ink); margin-top: 4px;}
-.hero .sign {margin-top: 16px; font-family: 'Fraunces', serif; font-size: 24px; color: var(--gold);}
-.scroll-cue {position: absolute; bottom: 36px; font-size: 12px; letter-spacing: 0.14em; color: var(--ink-soft); display: flex; flex-direction: column; align-items: center; gap: 8px;}
-.scroll-cue::after {content: ""; width: 1px; height: 26px; background: var(--ink-soft); animation: pulse 2s ease-in-out infinite;}
-@keyframes pulse {
-  0%, 100% {opacity: .25;}
-  50% {opacity: .8;}
-}
+    .hero {
+      min-height: 100svh;
+      min-height: var(--hero-vh, 100svh);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 50%;
+      opacity: 0;
+      filter: saturate(0.92) brightness(1.03);
+      animation: heroFade 18s ease-in-out infinite;
+    }
+
+    .hero-bg-img:nth-child(1) {
+      animation-delay: 0s;
+      object-position: 76% 18%;
+    }
+
+    .hero-bg-img:nth-child(2) {
+      animation-delay: 6s;
+      object-position: 70% 20%;
+    }
+
+    .hero-bg-img:nth-child(3) {
+      animation-delay: 12s;
+      object-position: 58% 15%;
+    }
+
+    @keyframes heroFade {
+      0% {
+        opacity: 0;
+      }
+
+      6% {
+        opacity: 1;
+      }
+
+      28% {
+        opacity: 1;
+      }
+
+      36% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(246, 243, 236, 0.32) 0%, rgba(246, 243, 236, 0.58) 42%, var(--paper) 94%);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg-img {
+        animation: none;
+        opacity: 0;
+      }
+
+      .hero-bg-img:first-child {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width:480px) {
+      .hero-bg-img:nth-child(1) {
+        object-position: 84% 16%;
+      }
+
+      .hero-bg-img:nth-child(2) {
+        object-position: 80% 18%;
+      }
+
+      .hero-bg-img:nth-child(3) {
+        object-position: 66% 14%;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      min-height: var(--hero-vh, 100svh);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 28px 60px;
+    }
+
+    .hero-thread {
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(var(--gold-soft), transparent);
+      margin-bottom: 28px;
+    }
+
+    .hero .eyebrow {
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.12;
+      max-width: 14ch;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero p.sub {
+      margin-top: 22px;
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 36ch;
+    }
+
+    .hero .meta {
+      margin-top: 44px;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+
+    .hero .meta span {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .hero .sign {
+      margin-top: 16px;
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      color: var(--gold);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-cue::after {
+      content: "";
+      width: 1px;
+      height: 26px;
+      background: var(--ink-soft);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .25;
+      }
+
+      50% {
+        opacity: .8;
+      }
+    }
+
     /* ---------- SECTION SHELL ---------- */
     section {
       padding: 100px 0;
     }
+
     .section-head {
       text-align: center;
       margin-bottom: 64px;
     }
+
     .section-head h2 {
       font-size: clamp(28px, 4vw, 38px);
       margin-top: 14px;
     }
+
     .rule {
       width: 40px;
       height: 1px;
       background: var(--gold);
       margin: 0 auto;
     }
+
     /* ---------- NOTE ---------- */
     .note {
       background: var(--paper-2);
     }
+
     .note-card {
       max-width: 560px;
       margin: 0 auto;
       text-align: center;
       padding: 0 12px;
     }
+
     .note-card p {
       font-size: 18px;
       color: var(--ink-soft);
     }
+
     .note-card .sign2 {
       margin-top: 28px;
       font-family: 'Caveat', cursive;
       font-size: 26px;
       color: var(--gold);
     }
+
     .note-card .sign {
       margin-top: 16px;
       font-family: 'Fraunces', serif;
       font-size: 24px;
       color: var(--gold);
     }
+
     /* ---------- TIMELINE ---------- */
     .timeline {
       position: relative;
     }
+
     .timeline-track {
       position: relative;
       max-width: 640px;
       margin: 0 auto;
     }
+
     .timeline-track::before {
       content: "";
       position: absolute;
@@ -193,15 +387,18 @@
       background: var(--line);
       transform: translateX(-50%);
     }
+
     .t-item {
       position: relative;
       display: flex;
       justify-content: center;
       margin-bottom: 64px;
     }
+
     .t-item:last-child {
       margin-bottom: 0;
     }
+
     .t-dot {
       position: absolute;
       top: 6px;
@@ -214,17 +411,21 @@
       box-shadow: 0 0 0 6px var(--paper);
       z-index: 2;
     }
+
     .t-card {
       width: calc(50% - 40px);
     }
+
     .t-item:nth-child(odd) .t-card {
       margin-right: auto;
       text-align: right;
     }
+
     .t-item:nth-child(even) .t-card {
       margin-left: auto;
       text-align: left;
     }
+
     .t-year {
       font-family: 'Fraunces', serif;
       font-style: italic;
@@ -233,6 +434,7 @@
       margin-bottom: 8px;
       display: block;
     }
+
     .photo-slot {
       width: 100%;
       aspect-ratio: 4/3;
@@ -249,14 +451,17 @@
       letter-spacing: 0.04em;
       margin-bottom: 14px;
     }
+
     .photo-slot svg {
       opacity: .55;
     }
+
     .photo-slot.filled {
       border: none;
       padding: 0;
       overflow: hidden;
     }
+
     .photo-slot.filled img {
       width: 100%;
       height: 100%;
@@ -264,10 +469,12 @@
       display: block;
       border-radius: 2px;
     }
+
     .t-caption {
       font-size: 14px;
       color: var(--ink-soft);
     }
+
     /* ---------- SCROLL REVEAL (timeline photos) ---------- */
     .t-year,
     .t-photo-pair,
@@ -279,84 +486,103 @@
       transform: translateY(22px);
       transition: opacity .9s cubic-bezier(.16, .8, .32, 1), transform .9s cubic-bezier(.16, .8, .32, 1);
     }
+
     .t-photo-pair .photo-slot {
       opacity: 0;
       transform: translateY(22px) scale(.97);
       transition: opacity .8s cubic-bezier(.16, .8, .32, 1), transform .8s cubic-bezier(.16, .8, .32, 1);
     }
+
     .t-item.visible .t-year {
       opacity: 1;
       transform: none;
       transition-delay: 0s;
     }
+
     .t-item.visible .t-photo-pair,
     .t-item.visible .t-card>.photo-slot {
       opacity: 1;
       transform: none;
       transition-delay: .1s;
     }
+
     .t-item.visible .t-caption {
       opacity: 1;
       transform: none;
       transition-delay: .4s;
     }
+
     .t-item.visible .polaroid-row {
       opacity: 1;
       transform: none;
       transition-delay: .1s;
     }
+
     .t-item.visible .boarding-pass {
       opacity: 1;
       transform: none;
       transition-delay: .3s;
     }
+
     .t-item.visible .t-photo-pair .photo-slot {
       opacity: 1;
       transform: none;
     }
+
     .t-item.visible .t-photo-pair .photo-slot:nth-child(1) {
       transition-delay: .12s;
     }
+
     .t-item.visible .t-photo-pair .photo-slot:nth-child(2) {
       transition-delay: .24s;
     }
+
     .t-item.visible .t-photo-pair .photo-slot:nth-child(3) {
       transition-delay: .36s;
     }
+
     .t-item.visible .t-photo-pair .photo-slot:nth-child(4) {
       transition-delay: .48s;
     }
+
     @media (max-width:620px) {
       .timeline-track::before {
         left: 14px;
       }
+
       .t-dot {
         left: 14px;
       }
+
       .t-card {
         width: calc(100% - 40px);
         margin-left: 40px !important;
         text-align: left !important;
       }
     }
+
     /* ---------- GALLERY ---------- */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
+
     .gallery-grid .photo-slot {
       margin-bottom: 0;
       aspect-ratio: 1/1;
     }
+
     .gallery-grid .photo-slot.tall {
       aspect-ratio: 1/1.3;
     }
+
     @media (max-width:620px) {
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     /* ---------- POLAROID STICKERS (for latest memory) ---------- */
     .polaroid-row {
       display: flex;
@@ -364,8 +590,15 @@
       flex-wrap: wrap;
       margin-bottom: 16px;
     }
-    .t-item:nth-child(odd) .polaroid-row { justify-content: flex-end; }
-    .t-item:nth-child(even) .polaroid-row { justify-content: flex-start; }
+
+    .t-item:nth-child(odd) .polaroid-row {
+      justify-content: flex-end;
+    }
+
+    .t-item:nth-child(even) .polaroid-row {
+      justify-content: flex-start;
+    }
+
     .polaroid {
       position: relative;
       background: #fff;
@@ -375,20 +608,24 @@
       transform: rotate(-5deg);
       transition: transform .25s ease;
     }
+
     .polaroid:nth-child(2) {
       transform: rotate(4deg);
       margin-top: 14px;
     }
+
     .polaroid:hover {
       transform: rotate(0deg) scale(1.04);
       z-index: 3;
     }
+
     .polaroid img {
       width: 100%;
       height: 108px;
       object-fit: cover;
       display: block;
     }
+
     .polaroid .tape {
       position: absolute;
       width: 42px;
@@ -399,6 +636,7 @@
       background: rgba(217, 196, 155, 0.55);
       border: 1px solid rgba(176, 138, 78, 0.35);
     }
+
     .polaroid span {
       display: block;
       text-align: center;
@@ -407,6 +645,7 @@
       color: var(--ink-soft);
       margin-top: 6px;
     }
+
     /* ---------- BOARDING PASS ---------- */
     .boarding-pass {
       position: relative;
@@ -417,6 +656,7 @@
       text-align: left;
       box-shadow: 0 10px 26px rgba(31, 46, 36, 0.12);
     }
+
     .boarding-pass::before,
     .boarding-pass::after {
       content: "";
@@ -428,8 +668,15 @@
       top: 50%;
       transform: translateY(-50%);
     }
-    .boarding-pass::before { left: -9px; }
-    .boarding-pass::after { right: -9px; }
+
+    .boarding-pass::before {
+      left: -9px;
+    }
+
+    .boarding-pass::after {
+      right: -9px;
+    }
+
     .bp-eyebrow {
       font-family: 'Manrope', sans-serif;
       font-size: 10.5px;
@@ -439,6 +686,7 @@
       color: var(--gold);
       margin-bottom: 10px;
     }
+
     .bp-row {
       display: flex;
       align-items: center;
@@ -447,11 +695,13 @@
       margin-bottom: 12px;
       border-bottom: 1px dashed var(--gold-soft);
     }
+
     .bp-row .code {
       font-family: 'Fraunces', serif;
       font-size: 26px;
       color: var(--ink);
     }
+
     .bp-row .code small {
       display: block;
       font-family: 'Manrope', sans-serif;
@@ -461,6 +711,7 @@
       color: var(--ink-soft);
       margin-top: 2px;
     }
+
     .bp-row .plane {
       flex: 1;
       text-align: center;
@@ -468,6 +719,7 @@
       font-size: 15px;
       letter-spacing: 0.05em;
     }
+
     .bp-foot {
       display: flex;
       justify-content: space-between;
@@ -475,21 +727,25 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .bp-foot .date {
       font-family: 'Fraunces', serif;
       font-style: italic;
       color: var(--ink-soft);
       font-size: 14px;
     }
+
     .bp-foot .msg {
       font-family: 'Fraunces', serif;
       font-size: 18px;
       color: var(--gold);
     }
+
     /* ---------- MESSAGE WALL ---------- */
     .messages {
       background: var(--paper-2);
     }
+
     .msg-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -497,17 +753,20 @@
       max-width: 480px;
       margin: 0 auto;
     }
+
     @media (max-width:620px) {
       .msg-grid {
         grid-template-columns: 1fr;
       }
     }
+
     .msg-card {
       background: var(--card);
       border-radius: 2px;
       padding: 26px 24px;
       box-shadow: 0 1px 0 var(--line);
     }
+
     .msg-card .name {
       font-size: 12px;
       letter-spacing: 0.08em;
@@ -516,6 +775,7 @@
       margin-bottom: 10px;
       font-weight: 700;
     }
+
     .msg-card p {
       font-family: 'Fraunces', serif;
       font-size: 16px;
@@ -523,6 +783,7 @@
       margin: 0;
       line-height: 1.4;
     }
+
     /* ---------- EXTERNAL LINK (drive) ---------- */
     .drive-link {
       display: inline-flex;
@@ -538,27 +799,33 @@
       text-decoration: none;
       transition: background .2s ease, color .2s ease;
     }
+
     .drive-link:hover {
       background: var(--gold);
       color: #fff;
     }
+
     /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
       padding: 90px 28px 60px;
     }
+
     footer .rule {
       margin-bottom: 26px;
     }
+
     footer h3 {
       font-size: clamp(24px, 4vw, 32px);
       max-width: 19ch;
       margin: 0 auto 14px;
     }
+
     footer p {
       color: var(--ink-soft);
       font-size: 14px;
     }
+
     .heart {
       margin-top: 34px;
       font-family: 'Fraunces', serif;
@@ -568,6 +835,7 @@
     }
   </style>
 </head>
+
 <body>
   <audio id="bgm" loop preload="none">
     <source src="bgm/nishimura_yukie-light.mp3" type="audio/mpeg">
@@ -615,7 +883,7 @@
               </div>
               <div class="photo-slot filled">
                 <img src="imgs/01/IMG_0911.JPG" alt="고등">
-              </div>         
+              </div>
             </div>
             <p class="t-caption">나뭇잎만 굴러다녀도 즐거웠던 중고등학교 시절</p>
           </div>
@@ -657,7 +925,7 @@
               </div>
               <div class="photo-slot filled">
                 <img src="imgs/01/2017-01-06-21-27-55.jpg" alt="크리스마스">
-              </div>      
+              </div>
             </div>
             <p class="t-caption">파릇파릇 꽃같은 우리들</p>
           </div>
@@ -690,10 +958,10 @@
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">2020~2021</span>
-            <div class="t-photo-pair">                  
+            <div class="t-photo-pair">
               <div class="photo-slot filled">
                 <img src="imgs/01/20200313_220346.jpg" alt="생일신소">
-              </div>     
+              </div>
               <div class="photo-slot filled">
                 <img src="imgs/01/1584111713014-3.jpg" alt="생일">
               </div>
@@ -746,10 +1014,10 @@
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">2025</span>            
+            <span class="t-year">2025</span>
             <div class="photo-slot filled">
               <img src="imgs/01/IMG_0099.JPG" alt="소영독사진점심">
-            </div>            
+            </div>
             <div class="photo-slot filled">
               <img src="imgs/01/IMG_0107.JPG" alt="점심">
             </div>
@@ -759,28 +1027,22 @@
             <p class="t-caption">다리가 찢어져도 만나요~</p>
           </div>
         </div>
-        
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
-            <span class="t-year">2026</span>      
+            <span class="t-year">2026</span>
             <div class="photo-slot filled">
-              <img src="imgs/01/IMG_9173.JPG" alt="소영이독사진">
+              <img src="imgs/01/IMG_1671.JPG" alt="소영이청모">
             </div>
             <div class="photo-slot filled">
               <img src="imgs/01/KakaoTalk_20260722_134125257.jpg" alt="승미집">
             </div>
             <div class="photo-slot filled">
               <img src="imgs/01/IMG_1732.JPG" alt="승미전시">
-            </div>            
-            <div class="photo-slot filled">
-              <img src="imgs/01/IMG_1671.JPG" alt="소영이청모">
             </div>
             <p class="t-caption">앎앎이 기쁨을 나누면 기쁨이 4제곱!</p>
           </div>
         </div>
-
-        
         <div class="t-item">
           <div class="t-dot"></div>
           <div class="t-card">
@@ -824,28 +1086,28 @@
       <div class="msg-grid">
         <div class="msg-card">
           <div class="name">예디</div>
-          <p> 소영아💕인생의 반려자를 만난 거 진심으로 축하해🥰 
-            얼핏보면 헐랭해보이지만 누구보다 실속있는 우리 소영이는 결혼생활도 얼렁뚱땅 잘 해나가리라 믿어!! 
-            결혼이란게 시작은 운명처럼 다가와도, 삶은 늘 현실적이라 서로 많은 노력이 필요한것 같아! 
-            커다란 기쁨도 자잘한 고민들도 언제든 얘기해 줘. 내가 온전히 함께해 줄게ㅎㅎ 
-            유부의 길을 같이 걸을 동지가 8년만에 생겨서 나도 정말 좋구나 ㅎㅎ 육아의 길도 머지 않았다🤜 
-            앞으로 30년, 40년, 50년, 60년 우리 인생의 너울을 함께 넘어보자구💗 
+          <p> 소영아💕인생의 반려자를 만난 거 진심으로 축하해🥰
+            얼핏보면 헐랭해보이지만 누구보다 실속있는 우리 소영이는 결혼생활도 얼렁뚱땅 잘 해나가리라 믿어!!
+            결혼이란게 시작은 운명처럼 다가와도, 삶은 늘 현실적이라 서로 많은 노력이 필요한것 같아!
+            커다란 기쁨도 자잘한 고민들도 언제든 얘기해 줘. 내가 온전히 함께해 줄게ㅎㅎ
+            유부의 길을 같이 걸을 동지가 8년만에 생겨서 나도 정말 좋구나 ㅎㅎ 육아의 길도 머지 않았다🤜
+            앞으로 30년, 40년, 50년, 60년 우리 인생의 너울을 함께 넘어보자구💗
             다시한번 결혼 축하해 소영아!^___^</p>
         </div>
         <div class="msg-card">
           <div class="name">뜽미</div>
-          <p>드디어 앎앎이들의 두번째 혼사를 치르게 된 소영아~ 예상보다 쪼금 늦은 결혼이지만(?) 
-            오히려 그래서 나는 네가 잘 살거라 믿어 의심치 않는다! 
-            진정한 짝꿍을 만나 단단한 가정 안에서 행복한 인생 여정을 보낼 소영이를 진심으로 축복한다🕊️✨ 
+          <p>드디어 앎앎이들의 두번째 혼사를 치르게 된 소영아~ 예상보다 쪼금 늦은 결혼이지만(?)
+            오히려 그래서 나는 네가 잘 살거라 믿어 의심치 않는다!
+            진정한 짝꿍을 만나 단단한 가정 안에서 행복한 인생 여정을 보낼 소영이를 진심으로 축복한다🕊️✨
             즐겁고 기쁜 일도 외롭고 힘든 일도 항상 우리가 함께 나눠줄 수 있다는 걸 기억하렴🫶</p>
         </div>
         <div class="msg-card">
           <div class="name">가용이</div>
           <p>우와아아! 소영이가 이제는 아름다운 신부가 된다니!🎀
-            가장 감동적이고 기적 같은 순간에 증인으로 함께할 수 있어서 
+            가장 감동적이고 기적 같은 순간에 증인으로 함께할 수 있어서
             내 가슴이 다 두근거리고 벅차오르는 거 있지? 🙈
-            앞으로 펼쳐질 유부로서의 모든 순간도 1열 직관하며 힘찬 박수함성 약속하마. 
-            사랑하고 세상사람 모두 부러웁게 잘살아!!!!!!!!!!!!  
+            앞으로 펼쳐질 유부로서의 모든 순간도 1열 직관하며 힘찬 박수함성 약속하마.
+            사랑하고 세상사람 모두 부러웁게 잘살아!!!!!!!!!!!!
           </p>
         </div>
       </div>
@@ -857,12 +1119,27 @@
     <h3 style="margin-top:14px;">소영이의 새로운 인생챕터를 <br>진심으로 축하하며,<br>더 많은 추억을 함께해💕</h3>
     <p>우리 우정은 앞으로도 계속될 거야.<br> 앎앎 야~호~ </p>
     <div class="heart">with love, ArmArm </div>
-<!-- https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n -->
-    <a class="drive-link" href="https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n" target="_blank" rel="noopener">
+    <!-- https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n -->
+    <a class="drive-link"
+      href="https://photos.google.com/share/AF1QipPrZcMQoLJIS_8-jkx8MSFqHXDuBMEIOm6JwUvV2RT__dEVkhH87dFqUFUlGgseKQ?key=emZJczlvcUxFSE1qek9wbTFaNzkyUV9TNWs5Xy1n"
+      target="_blank" rel="noopener">
       📁 더 많은 사진/영상 보러가기
     </a>
   </footer>
   <script>
+    // 모바일 스크롤 시 주소창이 접히고 펼쳐지며 뷰포트 높이가 순간적으로 바뀌는 것을 막기 위해,
+    // 히어로 높이를 화면 너비가 실제로 바뀔 때만(회전/기기 변경) 다시 측정해서 고정합니다.
+    let heroVW = window.innerWidth;
+    function setHeroHeight() {
+      document.documentElement.style.setProperty('--hero-vh', window.innerHeight + 'px');
+    }
+    setHeroHeight();
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== heroVW) {
+        heroVW = window.innerWidth;
+        setHeroHeight();
+      }
+    });
     const items = document.querySelectorAll('.t-item');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -880,7 +1157,7 @@
           playing = true;
           bgmToggle.classList.add('playing');
           bgmToggle.textContent = '❚❚';
-        }).catch(() => {});
+        }).catch(() => { });
       } else {
         bgm.pause();
         playing = false;
@@ -890,4 +1167,5 @@
     });
   </script>
 </body>
+
 </html>
