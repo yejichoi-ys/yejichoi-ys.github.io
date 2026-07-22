@@ -370,6 +370,8 @@
     .t-year,
     .t-photo-pair,
     .t-card>.photo-slot,
+    .polaroid-row,
+    .boarding-pass,
     .t-caption {
       opacity: 0;
       transform: translateY(22px);
@@ -399,6 +401,18 @@
       opacity: 1;
       transform: none;
       transition-delay: .4s;
+    }
+
+    .t-item.visible .polaroid-row {
+      opacity: 1;
+      transform: none;
+      transition-delay: .1s;
+    }
+
+    .t-item.visible .boarding-pass {
+      opacity: 1;
+      transform: none;
+      transition-delay: .3s;
     }
 
     .t-item.visible .t-photo-pair .photo-slot {
@@ -458,6 +472,154 @@
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+    }
+
+    /* ---------- POLAROID STICKERS (for latest memory) ---------- */
+    .polaroid-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .t-item:nth-child(odd) .polaroid-row { justify-content: flex-end; }
+    .t-item:nth-child(even) .polaroid-row { justify-content: flex-start; }
+
+    .polaroid {
+      position: relative;
+      background: #fff;
+      padding: 10px 10px 26px;
+      width: 132px;
+      box-shadow: 0 12px 24px rgba(31, 46, 36, 0.2);
+      transform: rotate(-5deg);
+      transition: transform .25s ease;
+    }
+
+    .polaroid:nth-child(2) {
+      transform: rotate(4deg);
+      margin-top: 14px;
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.04);
+      z-index: 3;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 108px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid .tape {
+      position: absolute;
+      width: 42px;
+      height: 16px;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-3deg);
+      background: rgba(217, 196, 155, 0.55);
+      border: 1px solid rgba(176, 138, 78, 0.35);
+    }
+
+    .polaroid span {
+      display: block;
+      text-align: center;
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    /* ---------- BOARDING PASS ---------- */
+    .boarding-pass {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--gold-soft);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: left;
+      box-shadow: 0 10px 26px rgba(31, 46, 36, 0.12);
+    }
+
+    .boarding-pass::before,
+    .boarding-pass::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--paper);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .boarding-pass::before { left: -9px; }
+    .boarding-pass::after { right: -9px; }
+
+    .bp-eyebrow {
+      font-family: 'Manrope', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .bp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--gold-soft);
+    }
+
+    .bp-row .code {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      color: var(--ink);
+    }
+
+    .bp-row .code small {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .bp-row .plane {
+      flex: 1;
+      text-align: center;
+      color: var(--gold);
+      font-size: 15px;
+      letter-spacing: 0.05em;
+    }
+
+    .bp-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .bp-foot .date {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .bp-foot .msg {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      color: var(--gold);
     }
 
     /* ---------- MESSAGE WALL ---------- */
@@ -586,11 +748,8 @@
           <div class="t-card">
             <span class="t-year">2006~2009</span>
             <div class="t-photo-pair">
-              <div class="photo-slot filled">
                      
               <div class="photo-slot filled">
-                <img src="imgs/01/080509-0000.jpg" alt="분홍티">
-              </div>
                 <img src="imgs/01/DSCN2946.JPG" alt="중등졸업">
               </div>
               <div class="photo-slot filled">
@@ -612,7 +771,7 @@
               
               
               <div class="photo-slot filled">
-                <img src="imgs/01/2012-05-27 17.29.17.jpg.jpg" alt="꽃밭">
+                <img src="imgs/01/2012-05-27.jpg" alt="꽃밭">
               </div>
               <div class="photo-slot filled">
                 <img src="imgs/01/2011-07-09 03.jpg" alt="홍대">
@@ -786,12 +945,33 @@
           <div class="t-dot"></div>
           <div class="t-card">
             <span class="t-year">Now <br> 2026.07.24-26</span>
-            <div class="photo-slot filled">
-              <img src="imgs/01/sanghae1.jpg" alt="상해1">
+
+            <div class="polaroid-row">
+              <div class="polaroid">
+                <div class="tape"></div>
+                <img src="imgs/01/GPT_sanghae.png" alt="상해1">
+                <span>✧ 앎앎 in 상해✧</span>
+              </div>
+              <!-- <div class="polaroid">
+                <div class="tape"></div>
+                <img src="imgs/01/sanghae2.jpg" alt="상해2">
+                <span>넷이서 ✧</span> -->
+              </div>
             </div>
-            <div class="photo-slot filled">
-              <img src="imgs/01/sanghae2.jpg" alt="상해2">
+
+            <div class="boarding-pass">
+              <div class="bp-eyebrow">ArmArm · Boarding Pass</div>
+              <div class="bp-row">
+                <div class="code">SEL<small>SEOUL</small></div>
+                <div class="plane">✈ ─ ─ ─ ─</div>
+                <div class="code" style="text-align:right;">PVG<small>SHANGHAI</small></div>
+              </div>
+              <div class="bp-foot">
+                <span class="date">2026.07.24 – 07.26</span>
+                <span class="msg">앎앎 첫 해외여행 탑승 완료 🎫</span>
+              </div>
             </div>
+
             <p class="t-caption">앎앎의 역사적인 첫 해외여행! Keep going~ </p>
           </div>
         </div>
